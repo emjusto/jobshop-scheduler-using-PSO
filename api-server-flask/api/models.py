@@ -211,53 +211,12 @@ class Task(db.Model):
             # "resources": self.resources
         }
 
-# class AllocatedWorker(db.Model):
-#     __tablename__ = 'allocated_workers'
-
-#     id = db.Column(db.Integer, primary_key=True)
-#     task_id = db.Column(db.Integer, db.ForeignKey('tasks.task_id'), nullable=False)
-#     skill_id = db.Column(db.Integer, db.ForeignKey('skills.skill_id'), nullable=False)
-#     num_workers = db.Column(db.Integer, nullable=False)
-# class Task(db.Model):
-#     __tablename__ = 'tasks'
-
-#     task_id = db.Column(db.Integer(), primary_key=True)
-#     name = db.Column(db.String(255), nullable=False)
-#     duration = db.Column(db.Integer(), nullable=False)  # Duration of the task in days
-#     start_date = db.Column(db.Date(), nullable=True)
-#     end_date = db.Column(db.Date(), nullable=True)
-#     project_id = db.Column(db.Integer(), db.ForeignKey('projects.project_id'), nullable=False)
-#     parent_id = db.Column(db.Integer(), db.ForeignKey('tasks.task_id', ondelete='CASCADE'), nullable=True)
-
-#     parent = db.relationship('Task', remote_side=[task_id], backref=db.backref('children', cascade='all, delete'))
-    
-#     # Relationship to manpower and equipment
-#     manpower_assignments = db.relationship('TaskManpower', backref='task', cascade='all, delete', lazy=True)
-#     equipment_assignments = db.relationship('TaskEquipment', backref='task', cascade='all, delete', lazy=True)
-#     skills = db.relationship('Skill', secondary='task_skills', backref=db.backref('tasks', cascade='all, delete'), lazy=True)
-
-#     def to_dict(self):
-#         return {
-#             "task_id": self.task_id,
-#             "name": self.name,
-#             "duration": self.duration,
-#             "start_date": self.start_date,
-#             "end_date": self.end_date,
-#             "project_id": self.project_id,
-#             "parent_id": self.parent_id,
-#             "required_skill": self.required_skill,
-#             "resources": self.resources
-#         }
-
 # Manpower model
 class Manpower(db.Model):
     __tablename__ = 'manpower'
 
     manpower_id = db.Column(db.Integer(), primary_key=True)
     name = db.Column(db.String(255), nullable=False)  # Manpower name
-    # age = db.Column(db.Integer(), nullable=True)  # Age of the manpower
-    # gender = db.Column(db.String(10), nullable=True)  # Gender of the manpower
-    # address = db.Column(db.String(255), nullable=True)  # Address of the manpower
 
     # Relationship with skills
     skills = db.relationship('Skill', secondary='manpower_skills', backref='manpowers', lazy=True)
