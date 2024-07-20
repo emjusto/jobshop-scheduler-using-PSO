@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import configData from '../../../../config';
+// import { LOGOUT } from './../../../../store/actions';
 
 // material-ui
 import { makeStyles } from '@material-ui/styles';
@@ -34,6 +35,8 @@ import { ACCOUNT_INITIALIZE } from './../../../../store/actions';
 // assets
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
+
+// import jwtDecode from 'jwt-decode';
 
 // style constant
 const useStyles = makeStyles((theme) => ({
@@ -92,6 +95,30 @@ const RestLogin = (props, { ...others }) => {
         event.preventDefault();
     };
 
+    // const isTokenExpired = (token) => {
+    //     if (!token) return true;
+    //     const decodedToken = jwtDecode(token);
+    //     const currentTime = Date.now() / 1000; // Convert milliseconds to seconds
+    //     return decodedToken.exp < currentTime;
+    // };
+    // const handleLogout = () => {
+    //     console.log(account.token);
+    //     axios
+    //         .post( configData.API_SERVER + 'users/logout', {token: `${account.token}`}, { headers: { Authorization: `${account.token}` } })
+    //         .then(function (response) {
+
+    //             // Force the LOGOUT
+    //             //if (response.data.success) {
+    //                 dispatcher({ type: LOGOUT });
+    //             //} else {
+    //             //    console.log('response - ', response.data.msg);
+    //             //}
+    //         })
+    //         .catch(function (error) {
+    //             console.log('error - ', error);
+    //         });
+    // };
+
     return (
         <React.Fragment>
             <Formik
@@ -107,7 +134,7 @@ const RestLogin = (props, { ...others }) => {
                 onSubmit={(values, { setErrors, setStatus, setSubmitting }) => {
                     try {
                         axios
-                            .post( configData.API_SERVER + 'users/login', {
+                            .post(configData.API_SERVER + 'users/login', {
                                 password: values.password,
                                 email: values.email
                             })
@@ -116,8 +143,20 @@ const RestLogin = (props, { ...others }) => {
                                     console.log(response.data);
                                     dispatcher({
                                         type: ACCOUNT_INITIALIZE,
-                                        payload: { isLoggedIn: true, user: response.data.user, token: response.data.token }
+                                        payload: {
+                                            isLoggedIn: true,
+                                            user: response.data.user,
+                                            token: response.data.token
+                                            // userId: response.data['id']
+                                        }
                                     });
+
+                                    // if (isTokenExpired(response.data.token)) {
+                                    //     // Token has expired, clear user session
+                                    //     // You can implement logout logic here
+                                    //     console.log('Token has expired');
+                                    // }
+
                                     if (scriptedRef.current) {
                                         setStatus({ success: true });
                                         setSubmitting(false);
@@ -205,7 +244,7 @@ const RestLogin = (props, { ...others }) => {
                             )}
                         </FormControl>
                         <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={1}>
-                            <FormControlLabel
+                            {/* <FormControlLabel
                                 control={
                                     <Checkbox
                                         checked={checked}
@@ -224,7 +263,7 @@ const RestLogin = (props, { ...others }) => {
                                 sx={{ textDecoration: 'none' }}
                             >
                                 Forgot Password?
-                            </Typography>
+                            </Typography> */}
                         </Stack>
                         {errors.submit && (
                             <Box

@@ -1,0 +1,29 @@
+.alert-message {
+    position: fixed;
+    top: 20px; /* Adjust the top position */
+    right: 20px; /* Adjust the right position */
+    padding: 15px;
+    border-radius: 5px;
+    transition: opacity 0.5s;
+    opacity: 0;
+    z-index: 1000; /* Ensure it appears above other elements */
+}
+
+.alert-message.show {
+    opacity: 1;
+}
+
+.success {
+    background-color: #4caf50; /* Green background color */
+    color: white;
+}
+
+.error {
+    background-color: #f44336; /* Red background color */
+    color: white;
+}
+
+.warning {
+    background-color: #ff9800; /* Orange background color */
+    color: white;
+}

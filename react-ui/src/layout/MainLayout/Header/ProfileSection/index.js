@@ -36,7 +36,7 @@ import { LOGOUT } from './../../../../store/actions';
 
 // assets
 import { IconLogout, IconSearch, IconSettings } from '@tabler/icons';
-import User1 from './../../../../assets/images/users/user-round.svg';
+import User1 from './../../../../assets/images/cons.png';
 
 // style const
 const useStyles = makeStyles((theme) => ({
@@ -60,11 +60,11 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         borderRadius: '27px',
         transition: 'all .2s ease-in-out',
-        borderColor: theme.palette.primary.light,
-        backgroundColor: theme.palette.primary.light,
+        borderColor: theme.palette.secondary.light,
+        backgroundColor: theme.palette.secondary.light,
         '&[aria-controls="menu-list-grow"], &:hover': {
-            borderColor: theme.palette.primary.main,
-            background: theme.palette.primary.main + '!important',
+            borderColor: theme.palette.secondary.main,
+            background: theme.palette.secondary.main + '!important',
             color: theme.palette.primary.light,
             '& svg': {
                 stroke: theme.palette.primary.light
@@ -134,12 +134,11 @@ const ProfileSection = () => {
     const handleLogout = () => {
         console.log(account.token);
         axios
-            .post( configData.API_SERVER + 'users/logout', {token: `${account.token}`}, { headers: { Authorization: `${account.token}` } })
+            .post(configData.API_SERVER + 'users/logout', { token: `${account.token}` }, { headers: { Authorization: `${account.token}` } })
             .then(function (response) {
-                
                 // Force the LOGOUT
                 //if (response.data.success) {
-                    dispatcher({ type: LOGOUT });
+                dispatcher({ type: LOGOUT });
                 //} else {
                 //    console.log('response - ', response.data.msg);
                 //}
@@ -173,7 +172,7 @@ const ProfileSection = () => {
                 className={classes.profileChip}
                 icon={
                     <Avatar
-                        src={User1}
+                        src={'./../../../../assets/images/cons.png'}
                         className={classes.headerAvatar}
                         ref={anchorRef}
                         aria-controls={open ? 'menu-list-grow' : undefined}
@@ -181,7 +180,7 @@ const ProfileSection = () => {
                         color="inherit"
                     />
                 }
-                label={<IconSettings stroke={1.5} size="1.5rem" color={theme.palette.primary.main} />}
+                label={<IconSettings stroke={1.5} size="1.5rem" color={theme.palette.secondary.main} />}
                 variant="outlined"
                 ref={anchorRef}
                 aria-controls={open ? 'menu-list-grow' : undefined}
@@ -215,9 +214,9 @@ const ProfileSection = () => {
                                     <CardContent className={classes.cardContent}>
                                         <Grid container direction="column" spacing={0}>
                                             <Grid item className={classes.flex}>
-                                                <Typography variant="h4">Good Morning,</Typography>
+                                                <Typography variant="h4">Good Day, </Typography>
                                                 <Typography component="span" variant="h4" className={classes.name}>
-                                                    John
+                                                    Project Manager
                                                 </Typography>
                                             </Grid>
                                             <Grid item>
@@ -242,7 +241,7 @@ const ProfileSection = () => {
                                         />
                                         <Divider />
                                         <PerfectScrollbar className={classes.ScrollHeight}>
-                                            <UpgradePlanCard />
+                                            {/* <UpgradePlanCard /> */}
                                             <Divider />
                                             <Card className={classes.card}>
                                                 <CardContent>

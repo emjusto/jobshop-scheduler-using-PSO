@@ -21,7 +21,11 @@ class BaseConfig():
     GITHUB_CLIENT_ID     = os.getenv('GITHUB_CLIENT_ID' , None)
     GITHUB_CLIENT_SECRET = os.getenv('GITHUB_SECRET_KEY', None)
     
-    JWT_ACCESS_TOKEN_EXPIRES = timedelta(hours=1)
+    JWT_ACCESS_TOKEN_EXPIRES = timedelta(hours=24)
+
+    # SQLALCHEMY_BINDS = {
+    #     'app_data': 'postgresql://postgres:superpassword@postgres/jobshop'
+    # }
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
@@ -60,3 +64,7 @@ class BaseConfig():
 
         # This will create a file in <app> FOLDER
         SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
+
+    #     SQLALCHEMY_BINDS = {
+    # 'app_data':        'postgresql://postgres:superpassword@localhost/jobshop'
+    #     }

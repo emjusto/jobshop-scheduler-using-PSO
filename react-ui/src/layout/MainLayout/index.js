@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex'
     },
     appBar: {
-        backgroundColor: theme.palette.background.default
+        backgroundColor: theme.palette.primary.light
     },
     appBarWidth: {
         transition: theme.transitions.create('width'),

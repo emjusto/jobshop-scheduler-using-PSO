@@ -73,14 +73,14 @@ const useStyles = makeStyles((theme) => ({
         marginTop: '8px'
     },
     cardHeading: {
-        fontSize: '2.125rem',
-        fontWeight: 500,
+        fontSize: '4.125rem',
+        fontWeight: 900,
         marginRight: '8px',
         marginTop: '14px',
         marginBottom: '6px'
     },
     subHeading: {
-        fontSize: '1rem',
+        fontSize: '1.50rem',
         fontWeight: 500,
         color: theme.palette.primary[200]
     },
@@ -111,8 +111,8 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
                 <SkeletonTotalOrderCard />
             ) : (
                 <MainCard border={false} className={classes.card} contentClass={classes.content}>
-                    <Grid container direction="column">
-                        <Grid item>
+                    <Grid container direction="row">
+                        {/* <Grid item>
                             <Grid container justifyContent="space-between">
                                 <Grid item>
                                     <Avatar variant="rounded" className={classes.avatar}>
@@ -138,16 +138,16 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
                                     </Button>
                                 </Grid>
                             </Grid>
-                        </Grid>
+                        </Grid> */}
                         <Grid item sx={{ mb: 0.75 }}>
                             <Grid container alignItems="center">
                                 <Grid item xs={6}>
                                     <Grid container alignItems="center">
                                         <Grid item>
                                             {timeValue ? (
-                                                <Typography className={classes.cardHeading}>$108</Typography>
+                                                <Typography className={classes.cardHeading}>10</Typography>
                                             ) : (
-                                                <Typography className={classes.cardHeading}>$961</Typography>
+                                                <Typography className={classes.cardHeading}>10</Typography>
                                             )}
                                         </Grid>
                                         <Grid item>
@@ -156,7 +156,7 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
                                             </Avatar>
                                         </Grid>
                                         <Grid item xs={12}>
-                                            <Typography className={classes.subHeading}>Total Order</Typography>
+                                            <Typography className={classes.subHeading}>Projects</Typography>
                                         </Grid>
                                     </Grid>
                                 </Grid>

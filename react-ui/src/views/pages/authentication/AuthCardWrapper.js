@@ -10,7 +10,7 @@ import MainCard from './../../../ui-component/cards/MainCard';
 // style constant
 const useStyles = makeStyles((theme) => ({
     card: {
-        maxWidth: '475px',
+        maxWidth: '500px',
         '& > *': {
             flexGrow: 1,
             flexBasis: '50%'

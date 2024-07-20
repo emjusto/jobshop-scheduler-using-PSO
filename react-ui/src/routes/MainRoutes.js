@@ -1,5 +1,5 @@
 import React, { lazy } from 'react';
-import { Route, Switch, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Switch, useLocation } from 'react-router-dom';
 
 // project imports
 import MainLayout from './../layout/MainLayout';
@@ -19,6 +19,19 @@ const UtilsTablerIcons = Loadable(lazy(() => import('../views/utilities/TablerIc
 // sample page routing
 const SamplePage = Loadable(lazy(() => import('../views/sample-page')));
 
+//PSO Pages
+const ProjectsList = Loadable(lazy(() => import('../views/pso-pages/projects-list')));
+const NewProject = Loadable(lazy(() => import('../views/pso-pages/new-project')));
+const EditProject = Loadable(lazy(() => import('../views/pso-pages/project')));
+const EmployeeList = Loadable(lazy(() => import('../views/pso-pages/employee-list')));
+const NewEmployee = Loadable(lazy(() => import('../views/pso-pages/new-employee')));
+const EquipmentList = Loadable(lazy(() => import('../views/pso-pages/equipment-list')));
+const NewEquipment = Loadable(lazy(() => import('../views/pso-pages/new-equipment')));
+const NewSkill = Loadable(lazy(() => import('../views/pso-pages/new-skill')));
+const SkillList = Loadable(lazy(() => import('../views/pso-pages/skill-list')));
+const SkillPage = Loadable(lazy(() => import('../views/pso-pages/skillPage')));
+const ReportsPage = Loadable(lazy(() => import('../views/pso-pages/reports')));
+
 //-----------------------|| MAIN ROUTING ||-----------------------//
 
 const MainRoutes = () => {
@@ -35,7 +48,18 @@ const MainRoutes = () => {
                 '/icons/tabler-icons',
                 '/icons/material-icons',
 
-                '/sample-page'
+                '/sample-page',
+                '/pso-pages/projects-list',
+                '/pso-pages/new-project',
+                '/pso-pages/project/:projectId',
+                '/pso-pages/employee-list',
+                '/pso-pages/new-employee',
+                '/pso-pages/equipment-list',
+                '/pso-pages/new-equipment',
+                '/pso-pages/skill-list',
+                '/pso-pages/new-skill',
+                '/pso-pages/skillPage',
+                '/pso-pages/reports/:projectId'
             ]}
         >
             <MainLayout>
@@ -50,6 +74,17 @@ const MainRoutes = () => {
                         <Route path="/icons/material-icons" component={UtilsMaterialIcons} />
 
                         <Route path="/sample-page" component={SamplePage} />
+                        <Route path="/pso-pages/projects-list" component={ProjectsList} />
+                        <Route path="/pso-pages/new-project" component={NewProject} />
+                        <Route path="/pso-pages/project/:projectId" component={EditProject} />
+                        <Route path="/pso-pages/employee-list" component={EmployeeList} />
+                        <Route path="/pso-pages/new-employee" component={NewEmployee} />
+                        <Route path="/pso-pages/equipment-list" component={EquipmentList} />
+                        <Route path="/pso-pages/new-equipment" component={NewEquipment} />
+                        <Route path="/pso-pages/skill-list" component={SkillList} />
+                        <Route path="/pso-pages/new-skill" component={NewSkill} />
+                        <Route path="/pso-pages/skillPage" component={SkillPage} />
+                        <Route path="/pso-pages/reports/:projectId" component={ReportsPage} />
                     </AuthGuard>
                 </Switch>
             </MainLayout>

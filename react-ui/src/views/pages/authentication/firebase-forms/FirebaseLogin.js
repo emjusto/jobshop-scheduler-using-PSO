@@ -245,7 +245,7 @@ const FirebaseLogin = (props, { ...others }) => {
                             )}
                         </FormControl>
                         <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={1}>
-                            <FormControlLabel
+                            {/* <FormControlLabel
                                 control={
                                     <Checkbox
                                         checked={checked}
@@ -264,7 +264,7 @@ const FirebaseLogin = (props, { ...others }) => {
                                 sx={{ textDecoration: 'none' }}
                             >
                                 Forgot Password?
-                            </Typography>
+                            </Typography> */}
                         </Stack>
                         {errors.submit && (
                             <Box

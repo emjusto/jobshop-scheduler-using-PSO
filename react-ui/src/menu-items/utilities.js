@@ -1,11 +1,13 @@
 // assets
-import { IconBrandFramer, IconTypography, IconPalette, IconShadow, IconWindmill, IconLayoutGridAdd } from '@tabler/icons';
+import { IconBrandFramer, IconTypography, IconPalette, IconShadow, IconUsers, IconClipboard, IconWindmill, IconLayoutGridAdd } from '@tabler/icons';
 
 // constant
 const icons = {
     IconTypography: IconTypography,
     IconPalette: IconPalette,
     IconShadow: IconShadow,
+    IconClipboard: IconClipboard,
+    IconUsers: IconUsers,
     IconWindmill: IconWindmill,
     IconBrandFramer: IconBrandFramer,
     IconLayoutGridAdd: IconLayoutGridAdd
@@ -15,7 +17,7 @@ const icons = {
 
 export const utilities = {
     id: 'utilities',
-    title: 'Utilities',
+    title: 'Management',
     type: 'group',
     children: [
         {
@@ -28,23 +30,23 @@ export const utilities = {
         },
         {
             id: 'util-color',
-            title: 'Color',
+            title: 'Projects (Color)',
             type: 'item',
             url: '/utils/util-color',
-            icon: icons['IconPalette'],
+            icon: icons['IconClipboard'],
             breadcrumbs: false
         },
         {
             id: 'util-shadow',
-            title: 'Shadow',
+            title: 'Employees (Shadow)',
             type: 'item',
             url: '/utils/util-shadow',
-            icon: icons['IconShadow'],
+            icon: icons['IconUsers'],
             breadcrumbs: false
         },
         {
             id: 'icons',
-            title: 'Icons',
+            title: 'Equipment (Icons)',
             type: 'collapse',
             icon: icons['IconWindmill'],
             children: [
@@ -64,5 +66,28 @@ export const utilities = {
                 }
             ]
         }
+        // {
+        //     id: 'equipment',
+        //     title: 'Equipment',
+        //     type: 'collapse',
+        //     icon: icons['IconWindmill'],
+        //     children: [
+        //         {
+        //             id: 'tabler-equip',
+        //             title: 'Tabler Equip',
+        //             type: 'item',
+        //             url: '/icons/tabler-equip',
+        //             breadcrumbs: false
+        //         },
+        //         {
+        //             id: 'material-icons2',
+        //             title: 'Material Icons2',
+        //             type: 'item',
+        //             url: '/icons/material-icons2',
+        //             breadcrumbs: false
+        //         }
+        //     ]
+        // }
+
     ]
 };

@@ -305,7 +305,7 @@ const FirebaseRegister = ({ ...others }) => {
 
                         <Grid container alignItems="center" justifyContent="space-between">
                             <Grid item>
-                                <FormControlLabel
+                                {/* <FormControlLabel
                                     control={
                                         <Checkbox
                                             checked={checked}
@@ -322,7 +322,7 @@ const FirebaseRegister = ({ ...others }) => {
                                             </Typography>
                                         </Typography>
                                     }
-                                />
+                                /> */}
                             </Grid>
                         </Grid>
                         {errors.submit && (

@@ -7,7 +7,7 @@ from datetime import datetime, timezone, timedelta
 
 from functools import wraps
 
-from flask import request
+from flask import Flask, request, jsonify, session
 from flask_restx import Api, Resource, fields
 
 import jwt
@@ -139,13 +139,17 @@ class Login(Resource):
                     "msg": "Wrong credentials."}, 400
 
         # create access token uwing JWT
-        token = jwt.encode({'email': _email, 'exp': datetime.utcnow() + timedelta(minutes=30)}, BaseConfig.SECRET_KEY)
+        token = jwt.encode({'email': _email, 'exp': datetime.utcnow() + timedelta(minutes=1440)}, BaseConfig.SECRET_KEY)
 
         user_exists.set_jwt_auth_active(True)
+        session['current_user_id'] = user_exists.id
         user_exists.save()
 
         return {"success": True,
                 "token": token,
+                "username": user_exists.username,
+                "id-session": session.get('current_user_id'),
+                "id": user_exists.id,
                 "user": user_exists.toJSON()}, 200
 
 
@@ -185,6 +189,7 @@ class LogoutUser(Resource):
     def post(self, current_user):
 
         _jwt_token = request.headers["authorization"]
+        #_jwt_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVsbWFAZ21haWwuY29tIiwiZXhwIjoxNzA0ODU0MTM5fQ.we5a2gsjYZ5WFoYs6pGymZOC7BAt-R6GHQbTiOfI6CU"
 
         jwt_block = JWTTokenBlocklist(jwt_token=_jwt_token, created_at=datetime.now(timezone.utc))
         jwt_block.save()
@@ -240,3 +245,80 @@ class GitHubLogin(Resource):
                     "username": user_json['username'],
                     "token": token,
                 }}, 200
+
+
+# @rest_api.route('/api/sessions/get')
+# class EditUser(Resource):
+#     """
+#        Edits User's username or password or both using 'user_edit_model' input
+#     """
+
+#     @rest_api.expect(user_edit_model)
+#     @token_required
+#     def post(self, current_user):
+
+#         req_data = request.get_json()
+
+#         _new_username = req_data.get("username")
+#         _new_email = req_data.get("email")
+
+#         if _new_username:
+#             self.update_username(_new_username)
+
+#         if _new_email:
+#             self.update_email(_new_email)
+
+#         self.save()
+
+#         return {"success": True}, 200
+    
+# @rest_api.route("/get", methods=['GET'])
+# @token_required
+# def get_current_user(self, current_user):
+
+#     req_data = request.get_json()
+#     user_id = req_data.get("email")
+
+#     if not user_id:
+#         return {"success": False,
+#                     "msg": "User does not exist."}, 400
+    
+#     user = Users.query.filter_by(email=user_id).first()
+#     return {"success": True,
+#                 "id": user.id,
+#                 "email": user.email,
+#                 "username": user.username,
+#                 "user": user.toJSON()}, 200
+
+# @rest_api.route("api/users/get")
+# def get_current_user():
+#     user_id = session.get("user_id")
+
+#     if not user_id:
+#         return jsonify({"error": "Unauthorized"}), 401
+    
+#     user = Users.query.filter_by(id=user_id).first()
+#     return jsonify({
+#         "id": user.id,
+#         "email": user.email
+#     }) 
+    
+
+@rest_api.route('/api/users/current')
+class CurrentUser(Resource):
+    """
+       Fetches data of the current session user
+    """
+
+    # @token_required
+    def get(self, current_user):
+        req_data = request.get_json()
+        # email = req_data.get("email")
+        email = "elma@gmail.com"
+        user = Users.query.filter_by(email=email).first()
+        return {
+            "success": True,
+            "username": user.username,
+            "email": user.email,
+            "user": user.toJSON()
+        }, 200

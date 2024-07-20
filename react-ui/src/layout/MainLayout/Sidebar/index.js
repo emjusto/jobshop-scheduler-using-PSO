@@ -65,13 +65,13 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
             <BrowserView>
                 <PerfectScrollbar component="div" className={classes.ScrollHeight}>
                     <MenuList />
-                    <MenuCard />
+                    {/* <MenuCard /> */}
                 </PerfectScrollbar>
             </BrowserView>
             <MobileView>
                 <Box sx={{ px: 2 }}>
-                    <MenuList />
-                    <MenuCard />
+                    {/* <MenuList /> */}
+                    {/* <MenuCard /> */}
                 </Box>
             </MobileView>
         </React.Fragment>

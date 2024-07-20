@@ -123,7 +123,7 @@ const RestRegister = ({ ...others }) => {
                 onSubmit={(values, { setErrors, setStatus, setSubmitting }) => {
                     try {
                         axios
-                            .post( configData.API_SERVER + 'users/register', {
+                            .post(configData.API_SERVER + 'users/register', {
                                 username: values.username,
                                 password: values.password,
                                 email: values.email
@@ -267,7 +267,7 @@ const RestRegister = ({ ...others }) => {
 
                         <Grid container alignItems="center" justifyContent="space-between">
                             <Grid item>
-                                <FormControlLabel
+                                {/* <FormControlLabel
                                     control={
                                         <Checkbox
                                             checked={checked}
@@ -284,7 +284,7 @@ const RestRegister = ({ ...others }) => {
                                             </Typography>
                                         </Typography>
                                     }
-                                />
+                                /> */}
                             </Grid>
                         </Grid>
                         {errors.submit && (
@@ -312,7 +312,7 @@ const RestRegister = ({ ...others }) => {
                                     variant="contained"
                                     color="secondary"
                                 >
-                                    Sign UP
+                                    Sign Up
                                 </Button>
                             </AnimateButton>
                         </Box>

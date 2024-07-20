@@ -1,4 +1,6 @@
 version: '3.8'
+volumes:
+   postgres_data:
 services:
   flask_api:
     container_name: flask_api
@@ -20,6 +22,18 @@ services:
       - web_network
     depends_on: 
       - flask_api
+  postgres:
+    image: postgres:16  # Use a specific PostgreSQL version if needed
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: superpassword
+      POSTGRES_DB: jobshop
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - db_network
+      - web_network
 networks:
   db_network:
     driver: bridge

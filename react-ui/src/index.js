@@ -12,11 +12,16 @@ import * as serviceWorker from './serviceWorker';
 import App from './App';
 import config from './config';
 
+// Syncfusion
+import { registerLicense } from '@syncfusion/ej2-base';
+
 // style + assets
 import './assets/scss/style.scss';
 
 //-----------------------|| REACT DOM RENDER  ||-----------------------//
 
+// Registering Syncfusion license key
+registerLicense('Ngo9BigBOggjHTQxAR8/V1NBaF5cXmZCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdnWXtcdHRSRWNfV0d+VkU=');
 ReactDOM.render(
     <Provider store={store}>
         <PersistGate loading={null} persistor={persister}>
