@@ -2,6 +2,8 @@
 
 A web application utilizing Particle Swarm Optimization (PSO) to optimize job shop scheduling and monitoring in the construction industry.
 
+Particle Swarm Optimization (PSO) is a computational method inspired by the social behavior of birds flocking or fish schooling. It is used to find optimal solutions to complex problems by iteratively improving a candidate solution with regard to a given measure of quality. In the context of a job shop scheduler in the construction industry, PSO can be used to optimize the manpower allocation and scheduling of tasks to improve efficiency and reduce costs. 
+
 ## Description
 
 In the construction industry, job shop scheduling is essential for effective resource management, timely project completion, cost containment, and overall project success. Managing risks, satisfying customer expectations, and preserving a competitive advantage are vital aspects of this sector. This system applies Particle Swarm Optimization (PSO) to optimize job shop scheduling and monitoring, ensuring efficient and successful project management.
